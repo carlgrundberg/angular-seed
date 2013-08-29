@@ -37,7 +37,6 @@ app.listen(1337);
 
 var state = {
     voters:{},
-    status:0,
     total:0,
     voted:0
 };
@@ -57,7 +56,6 @@ function num_voted() {
 }
 
 function reset_state() {
-    state.status = 0;
     for (var i in state.voters) {
         state.voters[i] = null;
     }
@@ -94,12 +92,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('vote', function (data) {
         console.log('vote', data);
         vote(socket.id, data.value);
-    });
-
-    socket.on('showresults', function () {
-        console.log('showresults');
-        state.status = 1;
-        send_update();
     });
 
     socket.on('reset', function () {
