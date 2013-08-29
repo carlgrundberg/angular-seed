@@ -1,0 +1,5 @@
+<div class="grid">
+    <div class="griditem" ng-repeat="item in items">
+        <a href class="button" ng-class="{'active': selectedValue == $index}" ng-bind-html-unsafe="item" ng-click="vote($index)"></a>
+    </div>
+</div>

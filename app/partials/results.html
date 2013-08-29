@@ -1,0 +1,9 @@
+<div class="results">
+    <div class="bars" ng-show="result" ng-repeat="(key, value) in result">
+        <div class="label" ng-bind-html-unsafe="items[key]"></div>
+        <div class="bar" style="width: {{ value * 100 }}px;">{{ value }}</div>
+    </div>
+    <div style="clear: both"></div>
+    <a href class="reset" ng-show="state.voted > 0 || showResults" ng-click="reset()">Reset</a>
+    <a href class="show" ng-show="state.voted > 0 && !showResults" ng-click="show()">Show results</a>
+</div>
