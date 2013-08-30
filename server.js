@@ -25,15 +25,17 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+// Serve all files in app folder
+app.use(express.static(path.join(__dirname, 'app')));
+
+// Rewrite all requests that fall through to index
 app.use(function (req, res, next) {
-    if (req.url == '/results') {
-        req.url = '/';
-    }
+    req.url = '/';
     next();
 });
+
+// Serve index
 app.use(express.static(path.join(__dirname, 'app')));
-app.use(app.router);
-app.use(express.errorHandler());
 
 require('./routes/socket')(io);
 
