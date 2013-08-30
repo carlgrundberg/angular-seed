@@ -26,7 +26,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(function (req, res, next) {
-    if (req.url.match(/\/results/)) {
+    if (req.url == '/results') {
         req.url = '/';
     }
     next();
